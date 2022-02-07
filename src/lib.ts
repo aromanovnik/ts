@@ -34,5 +34,5 @@ export function renderToast(
 }
 
 export function formatDate(date: Date): string {
-  return date?.toLocaleDateString('en-GB').split('/').reverse().join('-')
+  return date?.toLocaleDateString('en-GB').split('/').reverse().join('-');
 }

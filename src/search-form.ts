@@ -1,10 +1,14 @@
-import {formatDate, renderBlock} from './lib.js';
+import { formatDate, renderBlock } from './lib.js';
 
 export function renderSearchFormBlock(checkIn?: Date, checkOut?: Date): void {
   const today = new Date();
-  const lastDayOfMonth = new Date(today.getFullYear(), today.getMonth()+1, 0);
-  const _checkIn = formatDate( checkIn || new Date(today.getFullYear(), today.getMonth() - 1, today.getDate() + 1));
-  const _checkOut = formatDate(checkOut || new Date(today.getFullYear(), today.getMonth() - 1, today.getDate() + 2));
+  const lastDayOfMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+  const _checkIn = formatDate(
+    checkIn || new Date(today.getFullYear(), today.getMonth() - 1, today.getDate() + 1),
+  );
+  const _checkOut = formatDate(
+    checkOut || new Date(today.getFullYear(), today.getMonth() - 1, today.getDate() + 2),
+  );
 
   renderBlock(
     'search-form-block',
