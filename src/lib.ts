@@ -8,7 +8,7 @@ export function renderBlock(elementId: string, html: string) {
 export function renderToast(
   message: { type: string; text: string } | null,
   action?: { name: string; handler?: () => void },
-) {
+): void {
   let messageText = '';
 
   if (message != null) {
@@ -31,4 +31,8 @@ export function renderToast(
       renderToast(null);
     };
   }
+}
+
+export function formatDate(date: Date): string {
+  return date?.toLocaleDateString('en-GB').split('/').reverse().join('-');
 }
