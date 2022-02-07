@@ -1,7 +1,10 @@
-import { renderBlock } from './lib.js';
+import {formatDate, renderBlock} from './lib.js';
 
-export function renderSearchFormBlock(checkIn: Date, checkOut: Date) {
-  // console.log(checkIn, checkOut);
+export function renderSearchFormBlock(checkIn?: Date, checkOut?: Date): void {
+  const today = new Date();
+  const lastDayOfMonth = new Date(today.getFullYear(), today.getMonth()+1, 0);
+  const _checkIn = formatDate( checkIn || new Date(today.getFullYear(), today.getMonth() - 1, today.getDate() + 1));
+  const _checkOut = formatDate(checkOut || new Date(today.getFullYear(), today.getMonth() - 1, today.getDate() + 2));
 
   renderBlock(
     'search-form-block',
@@ -22,11 +25,11 @@ export function renderSearchFormBlock(checkIn: Date, checkOut: Date) {
         <div class="row">
           <div>
             <label for="check-in-date">Дата заезда</label>
-            <input id="check-in-date" type="date" value="${checkIn}" min="2021-05-11" max="2021-06-30" name="checkin" />
+            <input id="check-in-date" type="date" value="${_checkIn}" min="${today}" max="${lastDayOfMonth}" name="checkin" />
           </div>
           <div>
             <label for="check-out-date">Дата выезда</label>
-            <input id="check-out-date" type="date" value="${checkOut}" min="2021-05-11" max="2021-06-30" name="checkout" />
+            <input id="check-out-date" type="date" value="${_checkOut}" min="${today}" max="${lastDayOfMonth}" name="checkout" />
           </div>
           <div>
             <label for="max-price">Макс. цена суток</label>
