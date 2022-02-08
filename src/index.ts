@@ -1,10 +1,20 @@
 import { renderSearchFormBlock } from './search-form.js';
 import { renderSearchStubBlock } from './search-results.js';
-import { renderUserBlock } from './user.js';
-import { renderToast } from './lib.js';
+import { getFavoritesAmount, getUserData, renderUserBlock } from './user.js';
+import { renderToast, Storage } from './lib.js';
+import { IUser } from './types/IUser';
 
 window.addEventListener('DOMContentLoaded', () => {
-  renderUserBlock({ userName: '', avatarUrl: './img/avatar.png', favoriteItemsAmount: 0 });
+  Storage.set(
+    'user',
+    JSON.stringify({ userName: 'User name', avatarUrl: './img/avatar.png' } as IUser),
+  );
+  Storage.set('favoritesAmount', 1);
+
+  // ...
+  const userData = getUserData();
+  const favoritesAmount = getFavoritesAmount();
+  userData && renderUserBlock(userData, favoritesAmount ?? undefined);
   renderSearchFormBlock();
   renderSearchStubBlock();
   renderToast(
