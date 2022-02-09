@@ -1,4 +1,7 @@
-export function renderBlock(elementId: string, html: string) {
+import { IUser } from './types/IUser';
+import { Storage } from './Storage.js';
+
+export function renderBlock(elementId: string, html: string): void {
   const element: HTMLElement | null = document.getElementById(elementId);
   if (element) {
     element.innerHTML = html;
@@ -37,18 +40,9 @@ export function formatDate(date: Date): string {
   return date?.toLocaleDateString('en-GB').split('/').reverse().join('-');
 }
 
-export class Storage {
-  static set(key: string, value: unknown) {
-    const _val: string = typeof value === 'string' ? value : JSON.stringify(value);
-    localStorage.setItem(key, _val);
-  }
-
-  static get<T>(key: string): T | null {
-    const _val: string | null = localStorage.getItem(key);
-    return _val === null ? _val : (JSON.parse(_val) as T);
-  }
-
-  static remove(key: string): void {
-    localStorage.removeItem(key);
-  }
-}
+export const getFavoritesAmount = (): number | null => {
+  return Storage.get<number | null>('favoritesAmount');
+};
+export const getUserData = (): IUser | null => {
+  return Storage.get<IUser | null>('user');
+};
