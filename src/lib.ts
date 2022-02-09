@@ -1,4 +1,7 @@
-export function renderBlock(elementId: string, html: string) {
+import { IUser } from './types/IUser';
+import { Storage } from './Storage.js';
+
+export function renderBlock(elementId: string, html: string): void {
   const element: HTMLElement | null = document.getElementById(elementId);
   if (element) {
     element.innerHTML = html;
@@ -36,3 +39,10 @@ export function renderToast(
 export function formatDate(date: Date): string {
   return date?.toLocaleDateString('en-GB').split('/').reverse().join('-');
 }
+
+export const getFavoritesAmount = (): number | null => {
+  return Storage.get<number | null>('favoritesAmount');
+};
+export const getUserData = (): IUser | null => {
+  return Storage.get<IUser | null>('user');
+};
