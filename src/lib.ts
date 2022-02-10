@@ -46,3 +46,11 @@ export const getFavoritesAmount = (): number | null => {
 export const getUserData = (): IUser | null => {
   return Storage.get<IUser | null>('user');
 };
+
+export const getPosts = <T>(url: string): Promise<T> => {
+  return new Promise<T>((resolve) => {
+    fetch(url)
+      .then<T>((response) => response.json())
+      .then<void>((json) => resolve(json));
+  });
+};

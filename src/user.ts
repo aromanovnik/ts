@@ -1,8 +1,6 @@
 import { renderBlock } from './lib.js';
 import { IUser } from './types/IUser';
 
-const USER_KEY = 'user';
-
 export function renderUserBlock(user: IUser, favoriteItemsAmount?: number): void {
   const favoritesCaption = favoriteItemsAmount ? favoriteItemsAmount : 'ничего нет';
   const hasFavoriteItems = !!favoriteItemsAmount;

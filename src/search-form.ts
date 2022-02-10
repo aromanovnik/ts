@@ -18,15 +18,16 @@ export function renderSearchFormBlock(checkIn?: Date, checkOut?: Date): void {
     // callback
     if (callback) {
       setTimeout(() => {
-          callback(Math.random() < (percent / 100) ? [] : {
-            name: 'ERROR',
-            message: 'Error message',
-          })
-      }, 1000)
-
-
+        callback(
+          Math.random() < percent / 100
+            ? []
+            : {
+                name: 'ERROR',
+                message: 'Error message',
+              },
+        );
+      }, 1000);
     }
-
   };
 
   renderBlock(

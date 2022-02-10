@@ -1,11 +1,13 @@
 import { renderSearchFormBlock } from './search-form.js';
 import { renderSearchStubBlock } from './search-results.js';
 import { renderUserBlock } from './user.js';
-import { renderToast, getFavoritesAmount, getUserData } from './lib.js';
+import { renderToast, getFavoritesAmount, getUserData, getPosts } from './lib.js';
 import { Storage } from './Storage.js';
 import { IUser } from './types/IUser';
+import { IPost } from './types/IPost';
+import { renderPosts } from './posts.js';
 
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('DOMContentLoaded', async () => {
   // For test
   Storage.set(
     'user',
@@ -29,4 +31,8 @@ window.addEventListener('DOMContentLoaded', () => {
   //     },
   //   },
   // );
+
+  // Get posts
+  const posts = await getPosts<IPost[]>('https://jsonplaceholder.typicode.com/todos/');
+  renderPosts(posts);
 });
