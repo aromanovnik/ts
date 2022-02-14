@@ -54,3 +54,8 @@ export const getPosts = <T>(url: string): Promise<T> => {
       .then<void>((json) => resolve(json));
   });
 };
+
+export const getTodosByCount = <T>(count: number): Promise<T> => {
+  const url = `https://jsonplaceholder.typicode.com/todos/?_start=0&_limit=${count}`;
+  return getPosts(url);
+}
