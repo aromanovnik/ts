@@ -1,7 +1,7 @@
 import { renderSearchFormBlock } from './search-form.js';
 import { renderSearchStubBlock } from './search-results.js';
 import { renderUserBlock } from './user.js';
-import { renderToast, getFavoritesAmount, getUserData, getPosts } from './lib.js';
+import { getFavoritesAmount, getUserData, getTodosByCount } from './lib.js';
 import { Storage } from './Storage.js';
 import { IUser } from './types/IUser';
 import { IPost } from './types/IPost';
@@ -33,6 +33,7 @@ window.addEventListener('DOMContentLoaded', async () => {
   // );
 
   // Get posts
-  const posts = await getPosts<IPost[]>('https://jsonplaceholder.typicode.com/todos/');
+  // const posts = await getPosts<IPost[]>('https://jsonplaceholder.typicode.com/todos/');
+  const posts = await getTodosByCount<IPost[]>(5);
   renderPosts(posts);
 });
