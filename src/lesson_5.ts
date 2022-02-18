@@ -18,7 +18,7 @@ export abstract class MyGraphicsPrimitive2D {
   abstract leftTop: coordinate;
   abstract rightBottom: coordinate;
 
-  protected move(coordinate: coordinate): void {
+  move(coordinate: coordinate): void {
     this.leftTop = {
       x: this.leftTop.x + coordinate.x,
       y: this.leftTop.y + coordinate.y,
@@ -31,9 +31,8 @@ export abstract class MyGraphicsPrimitive2D {
   }
 }
 
-
 export abstract class MyAreaPrimitive2D extends MyGraphicsPrimitive2D {
-  protected getSquareArea(): number {
+  getSquareArea(): number {
     return (this.leftTop.x + this.rightBottom.x) * (this.leftTop.y + this.rightBottom.y);
   }
 }
@@ -45,26 +44,18 @@ export class MyCircle extends MyAreaPrimitive2D {
   public circleCenter: coordinate | undefined;
   public radius: number | undefined;
 
-  constructor(
-    leftTop: coordinate,
-    rightBottom: coordinate,
-  ) {
+  constructor(leftTop: coordinate, rightBottom: coordinate) {
     super();
     this.leftTop = leftTop;
     this.rightBottom = rightBottom;
   }
-
-
 }
 
 export class MyRectangle extends MyAreaPrimitive2D {
   public leftTop: coordinate;
   public rightBottom: coordinate;
 
-  constructor(
-    leftTop: coordinate,
-    rightBottom: coordinate,
-  ) {
+  constructor(leftTop: coordinate, rightBottom: coordinate) {
     super();
     this.leftTop = leftTop;
     this.rightBottom = rightBottom;
@@ -77,3 +68,13 @@ export class MyRectangle extends MyAreaPrimitive2D {
     return this.leftTop.y - this.rightBottom.y;
   }
 }
+
+const rectangle = new MyRectangle({x: 1, y: 10}, {x: 10, y: 1});
+rectangle.getSquareArea()
+rectangle.move({x: 2, y: 3});
+
+const circle = new MyRectangle({x: 1, y: 10}, {x: 10, y: 1});
+circle.getSquareArea()
+circle.move({x: 2, y: 3});
+circle.getWidth();
+circle.getHeight();
