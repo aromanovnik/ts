@@ -69,12 +69,12 @@ export class MyRectangle extends MyAreaPrimitive2D {
   }
 }
 
-const rectangle = new MyRectangle({x: 1, y: 10}, {x: 10, y: 1});
-rectangle.getSquareArea()
-rectangle.move({x: 2, y: 3});
+const rectangle = new MyRectangle({ x: 1, y: 10 }, { x: 10, y: 1 });
+rectangle.getSquareArea();
+rectangle.move({ x: 2, y: 3 });
 
-const circle = new MyRectangle({x: 1, y: 10}, {x: 10, y: 1});
-circle.getSquareArea()
-circle.move({x: 2, y: 3});
+const circle = new MyRectangle({ x: 1, y: 10 }, { x: 10, y: 1 });
+circle.getSquareArea();
+circle.move({ x: 2, y: 3 });
 circle.getWidth();
 circle.getHeight();
